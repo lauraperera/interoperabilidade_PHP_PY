@@ -35,6 +35,7 @@
 				<th> Destino    </th>
 				<th> Data		</th>
 				<th> Preço		</th>
+				<th>            </th>
 			</tr>
 			{% for tupla in resultado %}
 				<tr>
@@ -44,7 +45,7 @@
 					<td> {{tupla['destino']}} </td>
 					<td> {{tupla['datahora']}} </td>
 					<td> {{tupla['preco']}} </td>
-					<td> <a href="/clienteremover?id={{tupla[0]}}">X</a> </td>
+					<td> <a href="/comprarpassagem?companhia={{tupla['companhia']}}&voo={{tupla['id']}}&origem={{tupla['origem']}}&destino={{tupla['destino']}}&data={{tupla['datahora']}}&preco={{tupla['preco']}}">COMPRAR</a></td>
 				<tr>
 			{% endfor %}
 		</table>

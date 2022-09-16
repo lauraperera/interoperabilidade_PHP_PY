@@ -30,7 +30,7 @@ def buscarvoos():
 		resultado += buscaServico(origem, destino, datahora1, datahora2, 8083)
 		
 		# ordena o resultado baseado no preco de cada voo
-		resultado.sort(key=lambda x: x['preco']) # pra ser do maior pro menor => , reverse=True
+		resultado.sort(key=lambda x: x['preco']) 
 
 		return render_template("buscarvoos.html", resultado=resultado)
 	else:
@@ -44,12 +44,12 @@ def comprarpassagem():
 		nome = request.values.get('nome')
 		cpf = request.values.get('cpf')
 
-		if porta == 8081:
-			companhia == 'AZUL'
-		elif porta == 8082:
-			companhia == 'GOL'
-		elif porta == 8083:
-			companhia == 'LATAM'
+		if companhia == 'AZUL':
+			porta=8081
+		elif companhia == 'GOL':
+			porta=8082
+		elif companhia == 'LATAM':
+			porta=8083
 		
 		resultado = compraServico(voo, nome, cpf, porta)
 		
@@ -80,7 +80,7 @@ def buscaServico(origem, destino, datahora1, datahora2, porta):
 
 def compraServico(voo, nome, cpf, porta):
 	# cria objeto json pra executar a compra da passage
-	dados={'voo':voo, 'nome':nome, 'cpf':cpf}
+	dados={'cliente':-1,'voo':voo, 'nome':nome, 'cpf':cpf}
 	# transforma objeto em string
 	dados=json.dumps(dados)
 	# executa a chamada pro servico da "companhia", passando os dados para a compra

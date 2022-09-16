@@ -3,13 +3,13 @@
 	$array = json_decode( $json, true );
 
     $voo = $array['voo'];
-    $cliente = $array['cliente'];
+    #$cliente = $array['cliente'];
     $cpf = $array['cpf'];
     $nome = $array['nome'];
 
     $conexao = new pdo('sqlite:database');
 
-    $sql = "select * from cliente where id = '".$cliente."'";
+    $sql = "select * from cliente where cpf = '".$cpf."'";
     $resultado = $conexao->query($sql)->fetchAll(2);
     if(count($resultado) == 0){
         if(!isset($array['nome'])){
@@ -18,7 +18,7 @@
             print $json;
             exit;
         }
-        $sql = "insert into cliente values ('".$cpf."', '".$nome."'); ";
+        $sql = "insert into cliente values (null, '".$cpf."', '".$nome."'); ";
         $resultado = $conexao->exec($sql);
         if($resultado == 0){
             $array = ['status' => 'erroo'];
@@ -27,7 +27,9 @@
 			exit;
         }
     }
-
+    $sql = "select * from cliente where cpf = '".$cpf."'";
+    $resultado = $conexao->query($sql)->fetchAll(2);
+    $cliente = $resultado['0']['id'];
     $sql = "insert into passageiro values (null, '".$voo."', '".$cliente."')";
     
     $resultado = $conexao->exec($sql);
