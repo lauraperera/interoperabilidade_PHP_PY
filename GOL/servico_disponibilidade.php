@@ -6,10 +6,11 @@
     $destino = $array['destino'];
     $datahora1 = $array['datahora1'];
     $datahora2 = $array['datahora2'];
+    $companhia = 'GOL';
 
     $conexao = new pdo('sqlite:database');
 
-    $sql = "select * from vvoo where destino = '".$destino."' and origem = '".$origem."' and datahora between '".$datahora1."' and '".$datahora2."'";
+    $sql = "select *, '".$companhia."' as companhia from vvoo where destino = '".$destino."' and origem = '".$origem."' and datahora between '".$datahora1."' and '".$datahora2."'";
 
     $resultado = $conexao->query($sql)->fetchAll(2);
 	unset($conexao);

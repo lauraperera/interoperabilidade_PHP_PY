@@ -1,0 +1,51 @@
+		{% extends "layout.html" %}
+		{% block conteudo %}
+		<h2>Buscar Voos</h2>
+		<form>
+			<p> 
+				<label for="i1">ORIGEM</label> <br/>
+				<input type="text" id="i1" name="origem" autocomplete="off" value="POA"/> 
+			</p>
+			<p> 
+				<label for="i2">DESTINO</label> <br/>
+				<input type="text" id="i2" name="destino" autocomplete="off" value="POA" /> 
+			</p>
+			<p> 
+				<label for="i3">DATAHORA1</label> <br/>
+				<input type="text" id="i3" name="datahora1"/> 
+			</p>
+			<p> 
+				<label for="i4">DATAHORA2</label> <br/>
+				<input type="text" id="i4" name="datahora2"/> 
+			</p>
+			<p>
+				<button type="reset">Redefinir</button>
+				<button type="submit" formaction="/buscarvoos" formmethod="post">Enviar</button>
+			</p>
+		</form>
+
+		<hr>
+
+		<h2>Lista de Voos</h2>
+		<table border="1">
+			<tr>
+				<th> Companhia  </th>
+				<th> Aviao      </th>
+				<th> Origem     </th>
+				<th> Destino    </th>
+				<th> Data		</th>
+				<th> Preço		</th>
+			</tr>
+			{% for tupla in resultado %}
+				<tr>
+					<td> {{tupla['companhia']}} </td>
+					<td> {{tupla['aviao']}} </td>
+					<td> {{tupla['origem']}} </td>
+					<td> {{tupla['destino']}} </td>
+					<td> {{tupla['datahora']}} </td>
+					<td> {{tupla['preco']}} </td>
+					<td> <a href="/clienteremover?id={{tupla[0]}}">X</a> </td>
+				<tr>
+			{% endfor %}
+		</table>
+		{% endblock %}

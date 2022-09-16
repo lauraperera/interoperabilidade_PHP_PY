@@ -1,0 +1,41 @@
+		{% extends "layout.html" %}
+		{% block conteudo %}
+		<h2>Comprar passagem</h2>
+		<form>
+			<p> 
+				<label>COMPANHIA</label> <br/>
+				<input type="text" name="companhia" autocomplete="off" value="{{dados['companhia']}}" readonly/> 
+				<input type="hidden" name="voo" autocomplete="off" value="{{dados['voo']}}" readonly/> 
+			</p>
+			<p> 
+				<label for="i1">ORIGEM</label> <br/>
+				<input type="text" id="i1" autocomplete="off" value="{{dados['origem']}}" readonly/> 
+			</p>
+			<p> 
+				<label for="i2">DESTINO</label> <br/>
+				<input type="text" id="i2" autocomplete="off" value="{{dados['destino']}}" readonly/> 
+			</p>
+			<p> 
+				<label for="i3">DATA</label> <br/>
+				<input type="text" id="i3"  autocomplete="off" value="{{dados['data']}}" readonly/> 
+			</p>
+			<p> 
+				<label for="i4">PREÇO</label> <br/>
+				<input type="number" id="i4"  autocomplete="off" value="{{dados['preco']}}" readonly/> 
+			</p>
+			
+			<p> 
+				<label for="i5">NOME CLIENTE</label> <br/>
+				<input type="text" id="i5" name="nome" autocomplete="off" value="" required/> 
+			</p>
+			<p> 
+				<label for="i6">CPF CLIENTE</label> <br/>
+				<input type="text" id="i6" name="cpf" autocomplete="off" value="" required/> 
+			</p>
+			<p>
+				<button type="reset">Redefinir</button>
+				<button type="submit" formaction="/comprarpassagem" formmethod="post">Comprar passagem</button>
+			</p>
+		</form>
+
+		{% endblock %}
